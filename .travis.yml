@@ -1,0 +1,18 @@
+language: bash
+
+install:
+  - echo "v1.0"
+
+script:
+  - echo "no script."
+
+before_deploy:
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: bash scripts/deploy.sh
+    on:
+      branch: master
